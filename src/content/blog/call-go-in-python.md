@@ -98,7 +98,7 @@ Primitive Datentypen, wie Integer, Floats und Booleans können dabei nativ über
 Nun stellt sich natürlich die Frage: Wie sieht es mit der Performance aus?
 Um diese Frage zu beantworten, machen wir einen kleinen Benchmark.
 
-_Das ganze ist natürlich nicht repräsentativ und soll lediglich zur Einordnung dienen. Dass die Verwendung von Integern und Rekursion vorteilig auf die Berechnungszeit in Go und nachteilig auf die von Python wirkt, ist klar - aber es kommt in der Realität und vorallem in der wissenschaftlichen Datenverarbeitung häufiger zu solchen oder ähnlichen Begebenheiten_
+_Das Ganze ist natürlich nicht repräsentativ und soll lediglich zur Einordnung dienen. Dass die Verwendung von Integern und Rekursion vorteilig auf die Berechnungszeit in Go und nachteilig auf die von Python wirkt, ist klar - aber es kommt in der Realität und vorallem in der wissenschaftlichen Datenverarbeitung häufiger zu solchen oder ähnlichen Begebenheiten_
 
 ## Aufbau
 
@@ -152,7 +152,7 @@ for limit in range(5,50):
 	print(f"Go: {end2-start2}")
 ```
 
-Wir führen das ganze nun unter Verwendung verschiedener Limits aus.
+Wir führen das Ganze nun unter Verwendung verschiedener Limits aus.
 
 ### Ergebnis
 
