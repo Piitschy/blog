@@ -6,13 +6,15 @@ heroImage: '/picography-laptop-notepad-desk-1.jpg'
 ---
 
 # Ziel
+Wozu der ganze Kram eigentlich?
+
 Python ist einfach sehr sehr langsam.
-Nun könnte man natürlich auch einfach die benötigte Funktion in C oder C++ schreiben und anschließend mit `ctypes` in Python importieren ... 
+Nun könnte man natürlich auch einfach benötigte Funktion mit möglichst kurzer Ausführungszeit in C oder C++ schreiben und anschließend mit `ctypes` in Python importieren ... 
 oder man macht das gleiche mit Go-Funktionen.
 
 Go ist schnell geschrieben und einfach zu lesen - die steile Lernkurve erlaubt es außerdem die Grundkonzepte dieser Sprache an einem Nachmittag zu erfassen.
 Gerade vor diesem Hintergrund ist Go als kompilierte Sprache verhältnismäßig schnell.
-Die Nutzung von Goroutines ermöglicht sehr komfortables parallelisieren von Tasks - was man von Pythons Multithreading nicht behaupten kann.
+Der mitgelieferte Compiler ist schnell und einfach zu bedienen, außerdem ermöglicht die Nutzung von Goroutines ein sehr komfortables parallelisieren von Tasks - was man von Pythons Multithreading nicht behaupten kann.
 
 Aus diesen Gründen ist es durchaus interessant in Anwendungsfällen, in dem bestimmte Teile eines vorhandenen Python-Skripts, welches die Vorzüge beispielsweise einer Library oder eines Frameworks nutzt, etwas beschleunigt werden müssen.
 
@@ -57,20 +59,25 @@ dem Compiler die Anweisung zu geben, eben diese Funktion zu exportieren.
 
 ### Kompilieren
 
-Um die Go-Funktionen nutzen zu können, müssen sie mit dem Go-Compiler kompiliert werden. 
+Um die Go-Funktionen nutzen zu können, müssen sie mit dem Go-Compiler zu einer Shared Library kompiliert werden. 
 Mit der der Flag `-buildmode=c-shared` nutzt der Compiler die Dekoratoren in den Kommentaren über der Funktionsdefinition, 
-um die 
+um die Funktion in kompilierter Form in der Library und einer Header-Datei zu speichern.
+
+Diese wollen wir dann mit Hilfe des `c-types`-Moduls in Python nutzen.
 
 ```bash
 go build -o go_func.so -buildmode=c-shared ./func.go
 ```
 
+Nun sollten in dem Arbeitsordner zwei neue Dateien liegen: 
+1. Die Header-Datei `go_func.h`
+2. Die Shared-Library `go_func.so`
+
 ## Python Script
+Nun schreiben wir ein Python-Skript zur Nutzung dieser Shared Library.
 
 ```python
 from ctypes import *
-from typing import Callable
-from array import array
 go = cdll.LoadLibrary("./go_func.so")
 
 # call go function
@@ -78,6 +85,14 @@ r=go.add(10,20)
 
 print(r)
 ```
+
+Wichtig ist zunächst, dass wir die `ctypes` importieren.
+Mit der Methode `LoadLibrary` auf `cdll` können wir nun beliebige Shared Libraries - und somit auch unsere eben erstellte - laden.
+
+In diesem Fall habe ich die Library in die Variable `go` geschrieben.
+Auf dieser können wir nun alle Funktionen der Library aufrufen - auch unsere `add`-Funktion.
+
+Primitive Datentypen, wie Integer, Floats und Booleans können dabei nativ übertragen werden. `ctypes` kümmert sich selbstständig um die Konvertierung in C-Datentypen.
 
 # Performance
 
