@@ -124,46 +124,28 @@ from timeit import default_timer as timer
 
 go = cdll.LoadLibrary("./go_func.so")
 
-limit = 10 # 20, 30, 40
-print(f"limit: {limit}")
+for limit in range(5,50):
+	print(f"limit: {limit}")
 
-start1 = timer()
-res1 = fibonacci(limit)
-end1 = timer()
-print(f"Python: {end1-start1}")
+	start1 = timer()
+	res1 = fibonacci(limit)
+	end1 = timer()
+	print(f"Python: {end1-start1}")
 
-start2 = timer()
-res2 = go.fibonacci(40)
-end2 = timer()
-print(f"Go: {end2-start2}")
+	start2 = timer()
+	res2 = go.fibonacci(40)
+	end2 = timer()
+	print(f"Go: {end2-start2}")
 ```
 
-Wir führen das ganze nun unter Verwendung zweier Limits aus
+Wir führen das ganze nun unter Verwendung verschiedener Limits aus.
 
 ### Ergebnis
 
-```
-limit 10
-Python: 3.760399977181805e-05
-Go: 0.000290665600005034
-```
+![Alt-Text](/call-go-in-python/graph.png)
 
-```
-limit 20
-Python: 0.0019388470000194502
-Go: 0.00036239000019122614
-```
+Auf der y-Achse ist logarithmisch die benötigte Zeit in Sekunden und auf der x-Achse das Limit für die Funktion aufgetragen.
+Man kann gut erkennen, dass bei einem linearen Anstieg des Limits Ausführungszeit exponentiell steigt.
+Der Funktionsaufruf in Go ist dabei meist eine ganze Größenordnung schneller als der native.
 
-```
-limit 30
-Python: 0.2242325689999234
-Go: 0.00844102600012775
-```
-
-```
-limit 40
-Python: 29.484940967000057
-Go: 1.5551268180001898
-```
-
-Bei einem Limit von 10 ist die Python-Funktion noch schneller, da der Funktionsaufruf einer Funktion aus einer C-Library etwas mehr Zeit benötigt. Bei längeren Berechnungen ist das Ergebnis jedoch Eindeutig: Go-Funktionen aufrufen lohnt sich!
+Allerdings macht die leicht verlängerte Aufrufszeit der Go-Funktion dieses Verfahren erst mit einer gewissen Workload richtig effektiv.
