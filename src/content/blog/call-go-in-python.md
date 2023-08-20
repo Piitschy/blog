@@ -63,7 +63,7 @@ Um die Go-Funktionen nutzen zu können, müssen sie mit dem Go-Compiler zu einer
 Mit der der Flag `-buildmode=c-shared` nutzt der Compiler die Dekoratoren in den Kommentaren über der Funktionsdefinition, 
 um die Funktion in kompilierter Form in der Library und einer Header-Datei zu speichern.
 
-Diese wollen wir dann mit Hilfe des `c-types`-Moduls in Python nutzen.
+Diese wollen wir dann mit Hilfe des `ctypes`-Moduls in Python nutzen.
 
 ```bash
 go build -o go_func.so -buildmode=c-shared ./func.go
