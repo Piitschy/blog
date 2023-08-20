@@ -12,8 +12,7 @@ Python ist einfach sehr sehr langsam.
 Nun könnte man natürlich auch einfach benötigte Funktion mit möglichst kurzer Ausführungszeit in C oder C++ schreiben und anschließend mit `ctypes` in Python importieren ... 
 oder man macht das gleiche mit Go-Funktionen.
 
-Go ist schnell geschrieben und einfach zu lesen - die steile Lernkurve erlaubt es außerdem die Grundkonzepte dieser Sprache an einem Nachmittag zu erfassen.
-Gerade vor diesem Hintergrund ist Go als kompilierte Sprache verhältnismäßig schnell.
+Go ist schnell geschrieben und einfach zu lesen - die steile Lernkurve erlaubt es außerdem die Grundkonzepte dieser Sprache an einem Nachmittag zu erfassen - und als kompilierte Sprache sehr schnell in der Ausführung.
 Der mitgelieferte Compiler ist schnell und einfach zu bedienen, außerdem ermöglicht die Nutzung von Goroutines ein sehr komfortables parallelisieren von Tasks - was man von Pythons Multithreading nicht behaupten kann.
 
 Aus diesen Gründen ist es durchaus interessant in Anwendungsfällen, in dem bestimmte Teile eines vorhandenen Python-Skripts, welches die Vorzüge beispielsweise einer Library oder eines Frameworks nutzt, etwas beschleunigt werden müssen.
