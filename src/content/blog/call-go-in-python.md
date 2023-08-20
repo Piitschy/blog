@@ -97,7 +97,7 @@ Primitive Datentypen, wie Integer, Floats und Booleans können dabei nativ über
 # Performance
 
 Nun stellt sich natürlich die Frage: Wie sieht es mit der Performance aus?
-Um diese Frage zu beantworten machen wir einen kleinen Benchmark.
+Um diese Frage zu beantworten, machen wir einen kleinen Benchmark.
 
 _Das ganze ist natürlich nicht repräsentativ und soll lediglich zur Einordnung dienen. Dass die Verwendung von Integern und Rekursion vorteilig auf die Berechnungszeit in Go und nachteilig auf die von Python wirkt, ist klar - aber es kommt in der Realität und vorallem in der wissenschaftlichen Datenverarbeitung häufiger zu solchen oder ähnlichen Begebenheiten_
 
