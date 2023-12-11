@@ -147,7 +147,7 @@ for limit in range(5,50):
 	print(f"Python: {end1-start1}")
 
 	start2 = timer()
-	res2 = go.fibonacci(40)
+	res2 = go.fibonacci(limit)
 	end2 = timer()
 	print(f"Go: {end2-start2}")
 ```
