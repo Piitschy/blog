@@ -2,7 +2,7 @@
 title: 'drcts - Directus Migration CLI'
 description: 'drcts ist ein Go-CLI-Tool um directus Datenbanken zu migrieren. Die einfache Handhabung und die Möglichkeit, die Datenbanken in einem Schritt zu migrieren, machen drcts zu einem nützlichen Tool für Entwickler, die mit directus arbeiten.'
 pubDate: 'Jun 28 2024'
-heroImage: '/picography-laptop-notepad-desk-1.jpg'
+heroImage: '/title-pics/drcts.webp'
 tags:
     - directus
     - migration
